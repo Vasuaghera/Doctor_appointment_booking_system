@@ -1,6 +1,6 @@
-# Healthcare Management System
+# doctor_appointment_booking_system
 
-A full-stack healthcare management system built with React and Node.js.
+A full-stack doctor_appointment_booking_system built with React and Node.js.
 
 ## Features
 
