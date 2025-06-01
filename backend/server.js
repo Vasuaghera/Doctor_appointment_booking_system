@@ -16,7 +16,13 @@ connectCloudinary()
 
 // Middlewares
 app.use(express.json())
-app.use(cors())
+app.use(cors(
+  {
+      origin : ["https://deploy-mern-1whq.vercel.app"] ,
+      method : ["POST","GET"],
+      credentails : true
+      }
+)) ;
 
 // API Endpoints
 app.use("/api/user", userRouter)
