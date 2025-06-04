@@ -19,7 +19,7 @@ app.use(express.json())
 app.use(cors(
   {
       origin : ["https://doctor-appointment-booking-system-2.onrender.com" , "https://doctor-appointment-booking-system-jfqf-nwnv7p473.vercel.app" , 
-                "doctor-appointment-booking-system-3.vercel.app" , "doctor-appointment-booking-system-4.vercel.app"
+                "doctor-appointment-booking-system-3.vercel.app" , "doctor-appointment-booking-system-4.vercel.app" , "https://doctor-appointment-booking-system-g.vercel.app"
 ] ,
       method : ["POST", "GET", "PUT", "DELETE", "OPTIONS"],
       credentails : true
