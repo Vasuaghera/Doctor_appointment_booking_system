@@ -19,7 +19,7 @@ app.use(express.json())
 app.use(cors(
   {
       origin : ["https://doctor-appointment-booking-system-2.onrender.com"] ,
-      method : ["POST","GET"],
+      method : ["POST", "GET", "PUT", "DELETE", "OPTIONS"],
       credentails : true
       }
 )) ;
