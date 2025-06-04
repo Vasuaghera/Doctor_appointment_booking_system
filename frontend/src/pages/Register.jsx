@@ -11,8 +11,7 @@ const Register = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        password: '',
-        confirmPassword: ''
+        password: ''
     });
     const [loading, setLoading] = useState(false);
 
@@ -26,12 +25,6 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-
-        if (formData.password !== formData.confirmPassword) {
-            toast.error('Passwords do not match');
-            setLoading(false);
-            return;
-        }
 
         try {
             console.log('Attempting registration with URL:', `${backendUrl}/api/user/register`);
