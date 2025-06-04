@@ -18,7 +18,7 @@ connectCloudinary()
 app.use(express.json())
 app.use(cors(
   {
-      origin : ["https://doctor-appointment-booking-system-2.onrender.com"] ,
+      origin : ["https://doctor-appointment-booking-system-2.onrender.com" , "https://doctor-appointment-booking-system-jfqf-nwnv7p473.vercel.app"] ,
       method : ["POST", "GET", "PUT", "DELETE", "OPTIONS"],
       credentails : true
       }
