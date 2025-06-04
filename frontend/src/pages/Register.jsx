@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { assets } from '../assets/assets';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -51,16 +52,12 @@ const Register = () => {
         } catch (error) {
             console.error('Registration error:', error);
             if (error.response) {
-                // The request was made and the server responded with a status code
-                // that falls out of the range of 2xx
                 console.error('Error response:', error.response.data);
                 toast.error(error.response.data.message || 'Registration failed');
             } else if (error.request) {
-                // The request was made but no response was received
                 console.error('No response received:', error.request);
                 toast.error('No response from server. Please check your connection.');
             } else {
-                // Something happened in setting up the request that triggered an Error
                 console.error('Error setting up request:', error.message);
                 toast.error('An error occurred during registration');
             }
@@ -70,89 +67,125 @@ const Register = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-md mx-auto">
-                <div className="text-center mb-8">
-                    <h2 className="text-3xl font-bold text-gray-900">Create an Account</h2>
-                    <p className="mt-2 text-gray-600">Join our healthcare platform today</p>
+        <div className="min-h-screen flex">
+            {/* Left Side - Image Section */}
+            <div className="hidden lg:flex lg:w-1/2 bg-primary relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary/70 z-10"></div>
+                <img 
+                    src={assets.login_image} 
+                    alt="Healthcare" 
+                    className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 z-20 flex flex-col justify-center px-12 text-white">
+                    <h1 className="text-4xl font-bold mb-6">Join Our Healthcare Community!</h1>
+                    <p className="text-lg text-white/90 mb-8">
+                        Create an account to access premium healthcare services and manage your appointments.
+                    </p>
+                    <div className="space-y-4">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                            </div>
+                            <span>Create Your Profile</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <span>Book Appointments</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                            </div>
+                            <span>Secure Healthcare Platform</span>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div className="bg-white rounded-2xl shadow-sm p-8">
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <div>
-                            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+            {/* Right Side - Form Section */}
+            <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
+                <div className="w-full max-w-md">
+                    <div className="text-center">
+                        <h2 className="text-3xl font-bold text-gray-900">Create Account</h2>
+                        <p className="mt-2 text-gray-600">
+                            Join our healthcare platform and start your journey
+                        </p>
+                    </div>
+
+                    <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+                        <div className="group">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
                                 Full Name
                             </label>
                             <input
-                                id="name"
-                                name="name"
                                 type="text"
+                                name="name"
                                 required
                                 value={formData.name}
                                 onChange={handleChange}
-                                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
+                                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300"
                                 placeholder="Enter your full name"
                             />
                         </div>
 
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        <div className="group">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
                                 Email Address
                             </label>
                             <input
-                                id="email"
-                                name="email"
                                 type="email"
+                                name="email"
                                 required
                                 value={formData.email}
                                 onChange={handleChange}
-                                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
+                                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300"
                                 placeholder="Enter your email"
                             />
                         </div>
 
-                        <div>
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                        <div className="group">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
                                 Password
                             </label>
                             <input
-                                id="password"
-                                name="password"
                                 type="password"
+                                name="password"
                                 required
                                 value={formData.password}
                                 onChange={handleChange}
-                                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
+                                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300"
                                 placeholder="Create a password"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
-                                Confirm Password
-                            </label>
-                            <input
-                                id="confirmPassword"
-                                name="confirmPassword"
-                                type="password"
-                                required
-                                value={formData.confirmPassword}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300"
-                                placeholder="Confirm your password"
                             />
                         </div>
 
                         <button
                             type="submit"
                             disabled={loading}
-                            className={`w-full py-3 px-4 rounded-lg text-white font-medium transition-all duration-300 ${
-                                loading
-                                    ? 'bg-primary/70 cursor-not-allowed'
-                                    : 'bg-primary hover:bg-primary/90'
+                            className={`w-full py-3 px-4 rounded-xl text-white font-medium transition-all duration-300 ${
+                                loading 
+                                    ? 'bg-primary/70 cursor-not-allowed' 
+                                    : 'bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl'
                             }`}
                         >
-                            {loading ? 'Creating account...' : 'Create account'}
+                            {loading ? (
+                                <div className="flex items-center justify-center">
+                                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Creating account...
+                                </div>
+                            ) : (
+                                'Create Account'
+                            )}
                         </button>
                     </form>
 
