@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -32,24 +33,16 @@ const Register = () => {
         }
 
         try {
-            const response = await fetch(`${backendUrl}/api/user/register`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: formData.name,
-                    email: formData.email,
-                    password: formData.password
-                })
+            console.log('Attempting registration with URL:', `${backendUrl}/api/user/register`);
+            const { data } = await axios.post(`${backendUrl}/api/user/register`, {
+                name: formData.name,
+                email: formData.email,
+                password: formData.password
             });
-
-            const data = await response.json();
 
             if (data.success) {
                 setToken(data.token);
                 setUserData(data.user);
-
                 toast.success('Registration successful! Please check your email to verify your account.');
                 navigate('/');
             } else {
@@ -57,7 +50,20 @@ const Register = () => {
             }
         } catch (error) {
             console.error('Registration error:', error);
-            toast.error('An error occurred during registration');
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.error('Error response:', error.response.data);
+                toast.error(error.response.data.message || 'Registration failed');
+            } else if (error.request) {
+                // The request was made but no response was received
+                console.error('No response received:', error.request);
+                toast.error('No response from server. Please check your connection.');
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.error('Error setting up request:', error.message);
+                toast.error('An error occurred during registration');
+            }
         } finally {
             setLoading(false);
         }
