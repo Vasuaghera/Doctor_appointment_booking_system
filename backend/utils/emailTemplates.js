@@ -28,13 +28,13 @@ export const welcomeTemplate = (userData) => {
                     <li>Access your medical history</li>
                 </ul>
                 <p style="text-align: center; margin: 30px 0;">
-                    <a href="http://localhost:5173/login" class="button">Get Started</a>
+                    <a href="https://doctor-appointment-booking-system-jade.vercel.app/login" class="button">Get Started</a>
                 </p>
                 <p>If you have any questions, feel free to contact our support team.</p>
             </div>
             <div class="footer">
                 <p>This is an automated message, please do not reply.</p>
-                <p>&copy; 2024 HealthCare. All rights reserved.</p>
+                <p>&copy; 2024 Hopsital. All rights reserved.</p>
             </div>
         </div>
     </body>
@@ -79,7 +79,7 @@ export const loginNotificationTemplate = (userData) => {
             </div>
             <div class="footer">
                 <p>This is an automated message, please do not reply.</p>
-                <p>&copy; 2024 HealthCare. All rights reserved.</p>
+                <p>&copy; 2024 Hopsital. All rights reserved.</p>
             </div>
         </div>
     </body>
@@ -110,13 +110,13 @@ export const verificationTemplate = (userData) => {
                 <h2>Hello ${userData.name},</h2>
                 <p>Thank you for registering with HealthCare. Please verify your email address to complete your registration.</p>
                 <p style="text-align: center; margin: 30px 0;">
-                    <a href="http://localhost:5173/verify?token=${userData.verificationToken}" class="button">Verify Email</a>
+                    <a href="https://doctor-appointment-booking-system-jade.vercel.app/verify?token=${userData.verificationToken}" class="button">Verify Email</a>
                 </p>
                 <p>This link will expire in 24 hours. If you didn't create an account, you can safely ignore this email.</p>
             </div>
             <div class="footer">
                 <p>This is an automated message, please do not reply.</p>
-                <p>&copy; 2024 HealthCare. All rights reserved.</p>
+                <p>&copy; 2024 Hopsital. All rights reserved.</p>
             </div>
         </div>
     </body>
